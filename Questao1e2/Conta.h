@@ -1,6 +1,7 @@
 #pragma once
 #include "IConta.h"
 #include <string>
+#include "SaldoNaoDisponivelException.h"
 
 using namespace std;
 class Conta : public IConta{
@@ -26,7 +27,10 @@ class Conta : public IConta{
         void setNumero(int n){numeroConta = n;}
 
         void depositar(double d){saldo+=d;}
-        void sacar(double d){saldo-=d;}
+        void sacar(double d){
+            if(d>saldo) throw SaldoNaoDisponivelException();
+            saldo-=d;
+        }
         virtual void definirLimite(){limite = 2*salarioMensal;}
 
     protected:

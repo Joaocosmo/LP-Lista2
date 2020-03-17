@@ -8,6 +8,7 @@ int main()
     Conta c1 = Conta("joao", 2000, 1231412, 122);
     ContaEspecial c2 = ContaEspecial("maria", 2000 ,128139182, 500);
 
+    cout << "Questao 1:\n" << endl;
     cout << "Saldo: "<< c1.getSaldo()<<endl;
     c1.sacar(20);
     cout << "Depois do saque: "<<c1.getSaldo()<<endl;
@@ -16,7 +17,14 @@ int main()
     c1.definirLimite();
     c2.definirLimite();
     cout << "limite de c1: "<<c1.getLimite()<<endl;
-    cout << "limite de c2: "<<c2.getLimite()<<endl;
+    cout << "limite de c2: "<<c2.getLimite()<<endl<<endl<<endl;
+
+    cout << "Questao 2:\n" << endl;
+    try{
+        c1.sacar(200);
+    }catch(SaldoNaoDisponivelException& ex){
+        cout << ex.what() << endl;
+    }
 
 
     return 0;
